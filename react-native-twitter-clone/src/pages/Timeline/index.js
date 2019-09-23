@@ -18,9 +18,12 @@ class Timeline extends Component {
     ),
   });
 
-  state = {
-    tweets: [],
-  };
+  constructor() {
+    super();
+    this.state = {
+      tweets: [],
+    };
+  }
 
   async componentDidMount() {
     this.subscribeToEvents();
@@ -41,7 +44,7 @@ class Timeline extends Component {
     io.on('like', (data) => {
       const { tweets } = this.state;
       this.setState({
-        tweets: tweets.map(tweet => (tweet._id === data._id ? data : tweet)),
+        tweets: tweets.map((tweet) => (tweet.id === data.id ? data : tweet)),
       });
     });
   };
@@ -52,7 +55,7 @@ class Timeline extends Component {
       <View style={styles.container}>
         <FlatList
           data={tweets}
-          keyExtractor={tweet => tweet._id}
+          keyExtractor={(tweet) => tweet.id}
           renderItem={({ item }) => <Tweet tweet={item} />}
         />
       </View>

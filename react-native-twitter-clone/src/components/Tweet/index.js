@@ -8,19 +8,10 @@ import styles from './styles';
 import api from '../../services/api';
 
 class Tweet extends Component {
-  static propTypes = {
-    tweet: PropTypes.shape({
-      _id: PropTypes.string,
-      author: PropTypes.string,
-      content: PropTypes.string,
-      likes: PropTypes.number,
-    }).isRequired,
-  };
-
   handleLike = async () => {
     const { tweet } = this.props;
 
-    await api.post(`likes/${tweet._id}`);
+    await api.post(`likes/${tweet.id}`);
   };
 
   render() {
@@ -39,5 +30,14 @@ class Tweet extends Component {
     );
   }
 }
+
+Tweet.propTypes = {
+  tweet: PropTypes.shape({
+    id: PropTypes.string,
+    author: PropTypes.string,
+    content: PropTypes.string,
+    likes: PropTypes.number,
+  }).isRequired,
+};
 
 export default Tweet;

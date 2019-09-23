@@ -18,15 +18,12 @@ class Login extends Component {
     header: null,
   };
 
-  static propTypes = {
-    navigation: PropTypes.shape({
-      dispatch: PropTypes.func.isRequired,
-    }).isRequired,
-  };
-
-  state = {
-    username: '',
-  };
+  constructor() {
+    super();
+    this.state = {
+      username: '',
+    };
+  }
 
   async componentDidMount() {
     const username = await AsyncStorage.getItem('@TwitterClone:username');
@@ -84,5 +81,11 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  navigation: PropTypes.shape({
+    dispatch: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Login;

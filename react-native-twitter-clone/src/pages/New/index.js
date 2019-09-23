@@ -14,15 +14,12 @@ class New extends Component {
     header: null,
   };
 
-  static propTypes = {
-    navigation: PropTypes.shape({
-      pop: PropTypes.func.isRequired,
-    }).isRequired,
-  };
-
-  state = {
-    newTweet: '',
-  };
+  constructor() {
+    super();
+    this.state = {
+      newTweet: '',
+    };
+  }
 
   goBack = () => {
     const { navigation } = this.props;
@@ -74,5 +71,11 @@ class New extends Component {
     );
   }
 }
+
+New.propTypes = {
+  navigation: PropTypes.shape({
+    pop: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default New;
